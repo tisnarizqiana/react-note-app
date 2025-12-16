@@ -1,0 +1,461 @@
+/* =========================================
+   1. GLOBAL & RESET
+   ========================================= */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #f0f4f8;
+  color: #334155;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* =========================================
+   2. HEADER & NAVIGASI
+   ========================================= */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background: linear-gradient(135deg, #1a73e8 0%, #0052cc 100%);
+  padding: 1rem 0;
+  box-shadow: 0 4px 20px rgba(26, 115, 232, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  color: white;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.app-nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-link {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: #fff;
+}
+
+.nav-link-cta {
+  background-color: white;
+  color: #1a73e8 !important;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.nav-link-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   3. LAYOUT & CONTENT
+   ========================================= */
+.app-content {
+  flex: 1;
+  padding: 2.5rem 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.layout-halaman h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #1e293b;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+/* =========================================
+   4. SEARCH BAR (CLEAN)
+   ========================================= */
+.kotak-pencarian {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.kotak-pencarian input {
+  width: 100%;
+  max-width: 500px;
+  padding: 14px 24px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-size: 1rem;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(148, 163, 184, 0.1);
+  transition: all 0.3s;
+  color: #334155;
+}
+
+.kotak-pencarian input:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+}
+
+/* =========================================
+   5. GRID & CARD
+   ========================================= */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.pesan-kosong {
+  text-align: center;
+  color: #64748b;
+  margin-top: 3rem;
+}
+
+.kartu-item {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  height: 100%;
+}
+
+.kartu-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(148, 163, 184, 0.15);
+  border-color: #bfdbfe;
+}
+
+.kartu-konten {
+  margin-bottom: 1.5rem;
+}
+
+.kartu-judul {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.kartu-tanggal {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.kartu-body {
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* =========================================
+   6. TOMBOL AKSI DI KARTU
+   ========================================= */
+.kartu-aksi {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+  margin-top: auto;
+}
+
+.btn-arsip,
+.link-baca {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  transition: 0.2s;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.link-baca {
+  background-color: #eff6ff;
+  color: #1a73e8;
+}
+.link-baca:hover {
+  background-color: #dbeafe;
+}
+
+.btn-arsip {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+.btn-arsip:hover {
+  background-color: #e2e8f0;
+  color: #334155;
+}
+
+.btn-hapus {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background-color: #fee2e2;
+  color: #ef4444;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  margin-left: auto;
+}
+
+.btn-hapus:hover {
+  background-color: #fecaca;
+  transform: scale(1.1);
+}
+
+/* =========================================
+   7. FORM TAMBAH & DETAIL (EDITOR LOOK)
+   ========================================= */
+.add-new-page,
+.detail-page {
+  background: white;
+  padding: 50px;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(148, 163, 184, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid white;
+  position: relative;
+}
+
+.add-new-page__header {
+  margin-bottom: 30px;
+}
+
+.btn-kembali {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  margin-left: -12px;
+}
+
+.btn-kembali:hover {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+.add-new-page__input__title {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1e293b;
+  background: transparent;
+  margin-bottom: 20px;
+  transition: border-color 0.3s;
+  font-family: "Inter", sans-serif;
+}
+
+.add-new-page__input__title:focus {
+  outline: none;
+  border-bottom-color: #e2e8f0;
+}
+
+.add-new-page__input__title::placeholder {
+  color: #cbd5e1;
+}
+
+.add-new-page__input__body {
+  display: block;
+  width: 100%;
+  min-height: 400px;
+  border: none;
+  padding: 10px 0;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #334155;
+  background: transparent;
+  outline: none;
+  cursor: text;
+}
+
+.add-new-page__input__body:empty:before {
+  content: attr(data-placeholder);
+  color: #94a3b8;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.add-new-page__action {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-new-page__action button {
+  background: linear-gradient(135deg, #1a73e8, #0052cc);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.add-new-page__action button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26, 115, 232, 0.4);
+}
+
+.detail-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.detail-date {
+  display: block;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 1.5rem;
+}
+
+.detail-body {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #334155;
+}
+
+/* =========================================
+   8. HALAMAN 404
+   ========================================= */
+.not-found-container {
+  text-align: center;
+  padding-top: 4rem;
+}
+
+.not-found-container h1 {
+  font-size: 6rem;
+  margin: 0;
+  color: #cbd5e1;
+  font-weight: 800;
+}
+
+.not-found-container p {
+  font-size: 1.5rem;
+  color: #64748b;
+}
+
+/* =========================================
+   9. RESPONSIVE MOBILE
+   ========================================= */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .app-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .add-new-page,
+  .detail-page {
+    padding: 24px;
+    border-radius: 16px;
+  }
+
+  .add-new-page__input__title,
+  .detail-title {
+    font-size: 1.8rem;
+  }
+
+  .add-new-page__action button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .kartu-aksi {
+    justify-content: space-between;
+  }
+}

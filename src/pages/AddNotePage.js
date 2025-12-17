@@ -1,50 +1,49 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { addNote } from "../utils/network-data"; // Import fungsi API
 
-function AddNotePage({ onAdd }) {
+function AddNotePage() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const navigate = useNavigate();
 
+  // Handler untuk menangkap input dari ContentEditable (Body)
   const onBodyChangeEventHandler = (e) => {
     setBody(e.target.innerHTML);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title.trim() || !body.trim() || body === "<br>") {
-      alert("Mohon isi judul dan catatan terlebih dahulu.");
+    // 1. Validasi sederhana
+    if (!title.trim() || !body.trim()) {
+      alert("Mohon isi judul dan catatanmu dulu ya!");
       return;
     }
 
-    const newNote = {
-      id: +new Date(),
-      title: title,
-      body: body,
-      archived: false,
-      createdAt: new Date().toISOString(),
-    };
+    // 2. Kirim data ke API
+    const { error } = await addNote({ title, body });
 
-    if (onAdd) {
-      onAdd(newNote);
+    // 3. Jika sukses, kembali ke halaman Home
+    if (!error) {
+      navigate("/");
     }
-
-    navigate("/");
   };
 
   return (
-    <div className="add-new-page">
+    <section className="add-new-page">
+      {/* Header Kecil: Tombol Kembali */}
       <div className="add-new-page__header">
         <button
           className="btn-kembali"
           onClick={() => navigate("/")}
           title="Batal dan kembali"
         >
+          {/* Ikon Panah Kiri */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
+            width="24"
+            height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -59,7 +58,8 @@ function AddNotePage({ onAdd }) {
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className="add-new-page__form">
+      <form onSubmit={handleSubmit}>
+        {/* Input Judul (Besar & Bold) */}
         <input
           className="add-new-page__input__title"
           type="text"
@@ -70,6 +70,7 @@ function AddNotePage({ onAdd }) {
           autoFocus
         />
 
+        {/* Input Body (Rich Text / ContentEditable) */}
         <div
           className="add-new-page__input__body"
           data-placeholder="Tulis ceritamu di sini..."
@@ -78,6 +79,7 @@ function AddNotePage({ onAdd }) {
           onInput={onBodyChangeEventHandler}
         />
 
+        {/* Tombol Simpan */}
         <div className="add-new-page__action">
           <button type="submit" title="Simpan Catatan">
             <svg
@@ -99,7 +101,7 @@ function AddNotePage({ onAdd }) {
           </button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }
 

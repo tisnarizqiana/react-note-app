@@ -1,18 +1,48 @@
-import React from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { getNote } from "../utils/network-data"; // Import API
 import { showFormattedDate } from "../utils/date";
 
-function DetailPage({ semuaData }) {
+function DetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const note = semuaData.find((item) => item.id.toString() === id);
+  const [note, setNote] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  // Ambil data detail saat halaman dibuka
+  useEffect(() => {
+    async function fetchNote() {
+      const { data } = await getNote(id);
+
+      if (data) {
+        setNote(data);
+      }
+      // Jika data null (tidak ditemukan), tetap matikan loading
+      setLoading(false);
+    }
+
+    fetchNote();
+  }, [id]);
+
+  // Tampilan jika sedang loading
+  if (loading) {
+    return (
+      <div className="detail-page">
+        <p>Loading detail...</p>
+      </div>
+    );
+  }
+
+  // Tampilan jika catatan tidak ditemukan (404 handling)
   if (!note) {
     return (
       <div className="not-found-container">
+        <h1>404</h1>
         <p>Catatan tidak ditemukan.</p>
-        <Link to="/">Kembali ke Home</Link>
+        <button className="btn-kembali" onClick={() => navigate("/")}>
+          Kembali ke Home
+        </button>
       </div>
     );
   }
@@ -46,7 +76,14 @@ function DetailPage({ semuaData }) {
       <h2 className="detail-title">{note.title}</h2>
       <span className="detail-date">{showFormattedDate(note.createdAt)}</span>
 
-      <div className="detail-body">{note.body}</div>
+      {/* PENTING: Karena body berisi HTML string (dari contentEditable),
+         kita menggunakan dangerouslySetInnerHTML agar tag HTML dirender.
+         (Alternatif yang lebih aman adalah menggunakan library 'html-react-parser')
+      */}
+      <div
+        className="detail-body"
+        dangerouslySetInnerHTML={{ __html: note.body }}
+      />
     </div>
   );
 }

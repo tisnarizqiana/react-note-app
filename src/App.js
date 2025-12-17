@@ -5,32 +5,13 @@ import HalamanTambah from "./pages/AddNotePage";
 import HalamanArsip from "./pages/ArchivesPage";
 import HalamanDetail from "./pages/DetailPage";
 import HalamanNotFound from "./pages/NotFound";
+import { getAllNotes } from "./utils/local-data"; // IMPOR DATA DARI SINI
 import "./styles.css";
 
 function App() {
-  const [dbCatatan, setDbCatatan] = useState([
-    {
-      id: "catatan-1",
-      title: "Ide Konten TikTok",
-      body: "1. Review makanan pedas, 2. Tutorial React JS pemula, 3. A day in my life edisi coding...",
-      createdAt: "2023-11-20T04:27:34.572Z",
-      archived: false,
-    },
-    {
-      id: "catatan-2",
-      title: "List Belanja Bulanan",
-      body: "Beras 5kg, Telur 1 tray, Minyak Goreng, Sabun cuci muka, Snack buat begadang coding.",
-      createdAt: "2023-11-25T04:27:34.572Z",
-      archived: false,
-    },
-    {
-      id: "catatan-3",
-      title: "Target Skripsi 2024",
-      body: "Bab 1 selesai bulan depan. Revisi proposal harus kelar minggu ini. Semangat!",
-      createdAt: "2023-11-28T04:27:34.572Z",
-      archived: true,
-    },
-  ]);
+  // Gunakan getAllNotes() untuk inisialisasi state
+  // Ini memenuhi syarat: "menampilkan seluruh daftar catatan yang telah kami sediakan"
+  const [dbCatatan, setDbCatatan] = useState(getAllNotes());
 
   const onTambahHandler = ({ title, body }) => {
     setDbCatatan((dataLama) => [
@@ -58,6 +39,8 @@ function App() {
   };
 
   return (
+    // Pastikan basename sesuai dengan repository kamu jika deploy ke GitHub Pages
+    // Contoh: <BrowserRouter basename="/submission-react">
     <BrowserRouter>
       <div className="app-container">
         <header className="app-header">
